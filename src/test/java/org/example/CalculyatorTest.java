@@ -36,8 +36,8 @@ class CalculyatorTest {
         String str = "2+3-4*5/2";
         List<Calculyator.Sign> signList = Calculyator.signAnalizator(str);
         Calculyator.BufferSign bufferSign = new Calculyator.BufferSign(signList);
-        int expect = -5;
-        int result = Calculyator.expr(bufferSign);
+        double expect = -5;
+        double result = Calculyator.expr(bufferSign);
         assertEquals(expect, result);
     }
 
@@ -47,17 +47,17 @@ class CalculyatorTest {
         List<Calculyator.Sign> signListNumber = new ArrayList<>();
         signListNumber.add(sign);;
         Calculyator.BufferSign bufferSign = new Calculyator.BufferSign(signListNumber);
-        int result = Calculyator.expr(bufferSign);
+        double result = Calculyator.expr(bufferSign);
         assertEquals(0, result);
     }
 
     @Test
     void delMult() {
-        String str = "6*3/2";
+        String str = "6*3/8";
         List<Calculyator.Sign> signList = Calculyator.signAnalizator(str);
         Calculyator.BufferSign bufferSign = new Calculyator.BufferSign(signList);
-        int expect = 9;
-        int result = Calculyator.delMult(bufferSign);
+        double expect = 2.25;
+        double result = Calculyator.delMult(bufferSign);
         assertEquals(expect, result);
     }
 
@@ -66,8 +66,8 @@ class CalculyatorTest {
         String str = "1+5-2";
         List<Calculyator.Sign> signList = Calculyator.signAnalizator(str);
         Calculyator.BufferSign bufferSign = new Calculyator.BufferSign(signList);
-        int expect = 4;
-        int result = Calculyator.plusMinus(bufferSign);
+        double expect = 4;
+        double result = Calculyator.plusMinus(bufferSign);
         assertEquals(expect, result);
     }
     @Test
@@ -75,8 +75,8 @@ class CalculyatorTest {
         String str = "1+5-2*3";
         List<Calculyator.Sign> signList = Calculyator.signAnalizator(str);
         Calculyator.BufferSign bufferSign = new Calculyator.BufferSign(signList);
-        int expect = 0;
-        int result = Calculyator.plusMinus(bufferSign);
+        double expect = 0;
+        double result = Calculyator.plusMinus(bufferSign);
         assertEquals(expect, result);
     }
     @Test
@@ -91,9 +91,9 @@ class CalculyatorTest {
     void factorNumber() {
         Calculyator.Sign sign = new Calculyator.Sign(SignType.NUMBER, "42");
         List<Calculyator.Sign> signListNumber = new ArrayList<>();
-        signListNumber.add(sign);;
+        signListNumber.add(sign);
         Calculyator.BufferSign bufferSign = new Calculyator.BufferSign(signListNumber);
-        int result = Calculyator.factor(bufferSign);
+        double result = Calculyator.factor(bufferSign);
         assertEquals(42, result);
     }
     @Test
@@ -101,8 +101,8 @@ class CalculyatorTest {
         String str = "(2+3)*4";
         List<Calculyator.Sign> signList = Calculyator.signAnalizator(str);
         Calculyator.BufferSign bufferSign = new Calculyator.BufferSign(signList);
-        int expect = 5;
-        int result = Calculyator.factor(bufferSign);
+        double expect = 5;
+        double result = Calculyator.factor(bufferSign);
         assertEquals(expect, result);
     }
     @Test

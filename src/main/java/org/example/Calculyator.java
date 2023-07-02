@@ -117,7 +117,7 @@ public class Calculyator {
         return signList;
     }
 
-    public static int expr(BufferSign bufferSign) {
+    public static double expr(BufferSign bufferSign) {
         Sign sign = bufferSign.next();
         if (sign.signType == SignType.END_LINE) {
             return 0;
@@ -126,8 +126,8 @@ public class Calculyator {
             return plusMinus(bufferSign);
         }
     }
-    public static int delMult(BufferSign bufferSign) {
-        int val = factor(bufferSign);
+    public static double delMult(BufferSign bufferSign) {
+        double val = factor(bufferSign);
         while (true) {
             Sign sign = bufferSign.next();
             switch (sign.signType) {
@@ -143,8 +143,8 @@ public class Calculyator {
                 }
         }
     }
-    public static int plusMinus(BufferSign bufferSign) {
-        int val = delMult(bufferSign);
+    public static double plusMinus(BufferSign bufferSign) {
+        double val = (double) delMult(bufferSign);
         while (true) {
             Sign sign = bufferSign.next();
             switch (sign.signType) {
@@ -162,13 +162,13 @@ public class Calculyator {
             }
         }
     }
-    public static int factor(BufferSign bufferSign) {
+    public static double factor(BufferSign bufferSign) {
         Sign sign = bufferSign.next();
         switch (sign.signType) {
             case NUMBER :
                 return Integer.parseInt(sign.value);
             case LEFT_BRACKET:
-                int val = plusMinus(bufferSign);
+                double val = plusMinus(bufferSign);
                 sign = bufferSign.next();
                 if (sign.signType != SignType.RIGHT_BRACKET) {
                     throw new RuntimeException("Метод: factor1. Неверный символ " + sign.value + " на позиции " + bufferSign.getPos());
